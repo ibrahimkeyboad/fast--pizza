@@ -5,9 +5,9 @@ import Button from '../../ui/Button';
 import EmptyCart from '../cart/EmptyCart';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, getCart, getTotalCartPrice } from '../cart/cartSlice';
+import store from '../../store';
 import { formatCurrency } from '../../utils/helpers';
 import { fetchAddress } from '../user/userSlice';
-import { store } from '../store';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -18,7 +18,7 @@ const isValidPhone = (str) =>
 function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false);
   const {
-    userName,
+    username,
     status: addressStatus,
     position,
     address,
@@ -51,9 +51,9 @@ function CreateOrder() {
             className='input grow'
             type='text'
             name='customer'
-            defaultValue={userName}
+            defaultValue={username}
             required
-          />{' '}
+          />
         </div>
 
         <div className='mb-5 flex flex-col gap-2 sm:flex-row sm:items-center'>
@@ -126,6 +126,7 @@ function CreateOrder() {
                 : ''
             }
           />
+
           <Button disabled={isSubmitting || isLoadingAddress} type='primary'>
             {isSubmitting
               ? 'Placing order....'
@@ -164,4 +165,5 @@ export async function action({ request }) {
 
   return redirect(`/order/${newOrder.id}`);
 }
+
 export default CreateOrder;
