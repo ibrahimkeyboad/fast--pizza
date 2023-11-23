@@ -28,7 +28,7 @@ export const fetchAddress = createAsyncThunk(
 );
 
 const initialState = {
-  username: '',
+  userName: '',
   status: 'idle',
   position: {},
   address: '',
@@ -40,7 +40,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     updateName(state, action) {
-      state.username = action.payload;
+      state.userName = action.payload;
     },
   },
   extraReducers: (builder) =>
